@@ -36,9 +36,9 @@ PRODUCT_COPY_FILES += \
     device/sony/eagle/rootdir/init.yukon.dev.rc:root/init.yukon.dev.rc
 
 # Product attributes
-PRODUCT_NAME := aosp_d2303
+PRODUCT_NAME := cm_eagle
 PRODUCT_DEVICE := eagle
-PRODUCT_MODEL := Xperia M2 (AOSP)
+PRODUCT_MODEL := Xperia M2
 PRODUCT_BRAND := Sony
 PRODUCT_MANUFACTURER := Sony
 
