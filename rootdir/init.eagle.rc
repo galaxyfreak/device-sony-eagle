@@ -16,8 +16,8 @@ import init.common.rc
 import init.common.usb.rc
 import init.yukon.pwr.rc
 
-on init
-    symlink /dev/block/platform/msm_sdcc.1 /dev/block/bootdevice
+#on init
+#    symlink /dev/block/platform/msm_sdcc.1 /dev/block/bootdevice
 
 on post-fs-data
     # Symlink for compability
@@ -26,10 +26,14 @@ on post-fs-data
 
 on fs
     mount_all ./fstab.eagle
+    swapon_all /fstab.eagle
+    write /proc/sys/vm/page-cluster 0
+    write /proc/sys/vm/swappiness 100
     write /sys/kernel/boot_adsp/boot 1
 
 on boot
     # Sensor permissions
+    # Geomagnetic YAS533 iio
     chown system system /dev/iio:device0
     chown system system /sys/bus/iio/devices/iio:device0/hard_offset
     chown system system /sys/bus/iio/devices/iio:device0/sampling_frequency
@@ -44,6 +48,7 @@ on boot
     chown system input /sys/bus/iio/devices/iio:device1/in_accel_x_calibbias
     chown system input /sys/bus/iio/devices/iio:device1/in_accel_y_calibbias
     chown system input /sys/bus/iio/devices/iio:device1/in_accel_z_calibbias
+    #chmod 666 /sys/bus/iio/devices/iio:device0/ping
     write /sys/bus/iio/devices/iio:device0/position 1
     write /sys/bus/iio/devices/iio:device1/position 0
     chmod 666 /data/system/yas.cfg
@@ -54,6 +59,16 @@ on boot
     chown system system /sys/class/input/input0/driver/delay
     chown system system /sys/class/input/input1/driver/cali
 
+    mkdir /data/misc/sensors 0777 system system
+    chmod 666 /dev/mmc3416x
+    chmod 666 /dev/ecompass_ctrl
+    chmod 777 /system/bin/memsicd
+    chmod 666 /sys/class/magnetic/magnetic/aflag
+    chmod 666 /sys/class/magnetic/magnetic/mflag
+    chmod 666 /sys/class/magnetic/magnetic/oflag
+    chmod 666 /sys/class/magnetic/magnetic/grvflag
+    chmod 666 /sys/class/magnetic/magnetic/delay
+
     # Enable writing to led blink node from userspace
     chown system system /sys/class/leds/red/blink
     chown system system /sys/class/leds/green/blink
@@ -63,6 +78,11 @@ on boot
 
     # WCNSS enable
     write /dev/wcnss_wlan 1
+
+# MEMSIC sensor daemon
+service memsicd /system/bin/memsicd
+    class main
+    oneshot
 
 # WCNSS service
 service wcnss_service /system/vendor/bin/wcnss_service
@@ -104,6 +124,14 @@ service p2p_supplicant /system/bin/wpa_supplicant \
 service btnvtool /system/vendor/bin/btnvtool -I
     user root
     group root
+    oneshot
+
+# FM
+service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
+    class late_start
+    user root
+    group system fm_radio
+    disabled
     oneshot
 
 # BT service

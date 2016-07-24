@@ -1,4 +1,4 @@
-# Copyright 2014 The Android Open Source Project
+# Copyright (C) 2013 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,18 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-TARGET_KERNEL_CONFIG := aosp_yukon_eagle_defconfig
+""" Custom OTA commands for eagle device """
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, device/sony/eagle/device.mk)
-$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+import common
 
-# Product attributes
-PRODUCT_NAME := aosp_d2303
-PRODUCT_DEVICE := eagle
-PRODUCT_MODEL := Xperia M2
-PRODUCT_BRAND := Sony
-PRODUCT_MANUFACTURER := Sony
+def FullOTA_InstallEnd(info):
+  info.script.AppendExtra('if (read_file("/sys/class/magnetic/magnetic/ping") == "0x30:0x06") then')
+  info.script.Mount("/system")
+  info.script.AppendExtra('delete("/system/vendor/lib/hw/sensors.eagle.so");')
+  info.script.AppendExtra('rename("/system/vendor/lib/hw/sensorsecond.eagle.so", "/system/vendor/lib/hw/sensors.eagle.so");')
+  info.script.Unmount("/system")
+  info.script.AppendExtra('endif;')
 
