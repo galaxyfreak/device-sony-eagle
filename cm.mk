@@ -16,7 +16,7 @@
 TARGET_KERNEL_SOURCE := kernel/sony/msm8226
 
 # Inherit CM Yukon common device parts
-$(call inherit-product, device/sony/yukon-common/device_cm.mk)
+$(call inherit-product, device/sony/yukon/device_cm.mk)
 
 # Recovery
 PRODUCT_COPY_FILES += \
