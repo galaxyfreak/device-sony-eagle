@@ -15,13 +15,7 @@
 
 """ Custom OTA commands for eagle device """
 
-import common
-
 def FullOTA_InstallEnd(info):
-  info.script.AppendExtra('if (read_file("/sys/class/magnetic/magnetic/ping") == "0x30:0x06") then')
   info.script.Mount("/system")
-  info.script.AppendExtra('delete("/system/vendor/lib/hw/sensors.eagle.so");')
-  info.script.AppendExtra('rename("/system/vendor/lib/hw/sensorsecond.eagle.so", "/system/vendor/lib/hw/sensors.eagle.so");')
+  info.script.AppendExtra('run_program("/tmp/install/bin/sensors.sh");')
   info.script.Unmount("/system")
-  info.script.AppendExtra('endif;')
-
