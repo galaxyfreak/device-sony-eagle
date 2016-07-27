@@ -27,10 +27,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
-# Sensor script
-PRODUCT_COPY_FILES += \
-    device/sony/eagle/releasetools/sensors.sh:install/bin/sensors.sh
-
 # Device Init
 PRODUCT_PACKAGES += \
     fstab.eagle \
