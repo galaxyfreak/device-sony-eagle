@@ -1,4 +1,4 @@
-# Copyright 2014 The Android Open Source Project
+# Copyright (C) 2013 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,18 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-include device/sony/yukon/PlatformConfig.mk
+""" Custom OTA commands for eagle device """
 
-TARGET_RECOVERY_FSTAB = device/sony/eagle/rootdir/fstab.eagle
-
-TARGET_BOOTLOADER_BOARD_NAME := D2303
-
-TARGET_RELEASETOOLS_EXTENSIONS := device/sony/eagle/releasetools
-
-BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1962934272
-#Reserve space for data encryption (5461000192-16384)
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 5460983808
-
-BOARD_KERNEL_CMDLINE += androidboot.hardware=eagle
-#BOARD_KERNEL_CMDLINE += mem=1003M
+def FullOTA_InstallEnd(info):
+  info.script.Mount("/system")
+  info.script.AppendExtra('run_program("/tmp/install/bin/sensors.sh");')
+  info.script.Unmount("/system")
