@@ -19,6 +19,9 @@ $(call inherit-product, device/sony/eagle/device.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
+PRODUCT_COPY_FILES += \
+    device/sony/eagle/releasetools/sensors.sh:install/bin/sensors.sh
+
 # Product attributes
 PRODUCT_NAME := aosp_d2303
 PRODUCT_DEVICE := eagle
