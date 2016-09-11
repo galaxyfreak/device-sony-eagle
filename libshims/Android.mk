@@ -1,4 +1,4 @@
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,15 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-""" Custom OTA commands for eagle device """
+LOCAL_PATH := $(call my-dir)
 
-import common
-import re
-import os
+include $(CLEAR_VARS)
 
-def FullOTA_InstallEnd(info):
-  info.script.Mount("/system")
-  info.script.AppendExtra('run_program("/tmp/install/bin/sensors.sh");')
-  info.script.Unmount("/system")
+LOCAL_SRC_FILES := \
+    gui/SensorManager.cpp
+
+LOCAL_SHARED_LIBRARIES := libutils libgui liblog libbinder
+LOCAL_MODULE := libshim_camera
+LOCAL_MODULE_TAGS := optional
+
+include $(BUILD_SHARED_LIBRARY)

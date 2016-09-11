@@ -16,10 +16,14 @@ import init.common.rc
 import init.common.usb.rc
 import init.yukon.pwr.rc
 
-#on init
-#    symlink /dev/block/platform/msm_sdcc.1 /dev/block/bootdevice
+on init
+    # Symbols required for camera blobs
+    export LD_SHIM_LIBS /system/lib/hw/camera.msm8226.so|libshim_camera.so:/system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
 
 on post-fs-data
+    #Camera
+    mkdir /data/misc/camera 0770 camera camera
+
     # Symlink for compability
     symlink /dev/pn54x /dev/pn544
     symlink /dev/pn54x /dev/pn547
