@@ -42,6 +42,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libshim_camera
 
+# wcnss
+PRODUCT_PACKAGES += \
+   wcnss_service
+
 # BoringSSL
 PRODUCT_PACKAGES += \
     libboringssl-compat
