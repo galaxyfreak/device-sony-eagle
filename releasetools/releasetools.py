@@ -20,6 +20,6 @@ import re
 import os
 
 def FullOTA_InstallEnd(info):
-  info.script.AppendExtra('run_program("/tmp/install/bin/firmware.sh");')
+  info.script.AppendExtra('run_program("/tmp/install/bin/variant.sh");')
   info.script.AppendExtra('run_program("/tmp/install/bin/sensors.sh");')
   info.script.Unmount("/system")

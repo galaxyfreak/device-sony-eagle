@@ -21,7 +21,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 PRODUCT_COPY_FILES += \
     device/sony/eagle/releasetools/sensors.sh:install/bin/sensors.sh \
-    device/sony/eagle/releasetools/firmware.sh:install/bin/firmware.sh
+    device/sony/eagle/releasetools/variant.sh:install/bin/variant.sh
 
 # Product attributes
 PRODUCT_NAME := aosp_d2303
