@@ -60,7 +60,8 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 PRODUCT_PROPERTY_OVERRIDES := \
     ro.sf.lcd_density=240 \
-    ro.usb.pid_suffix=1B8
+    ro.usb.pid_suffix=1B8 \
+    ro.ril.telephony.mqanelements=5
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/sony/yukon/platform.mk)
