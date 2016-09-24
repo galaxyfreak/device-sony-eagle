@@ -21,9 +21,6 @@ on init
     export LD_SHIM_LIBS /system/lib/hw/camera.msm8226.so|libshim_camera.so:/system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
 
 on post-fs-data
-    #Camera
-    mkdir /data/misc/camera 0770 camera camera
-
     # Symlink for compability
     symlink /dev/pn54x /dev/pn544
     symlink /dev/pn54x /dev/pn547
