@@ -46,6 +46,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
    wcnss_service
 
+# NFC config
+PRODUCT_PACKAGES += \
+    nfc_nci.eagle
+
 # BoringSSL
 PRODUCT_PACKAGES += \
     libboringssl-compat
@@ -60,9 +64,8 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 PRODUCT_PROPERTY_OVERRIDES := \
     ro.sf.lcd_density=240 \
-    ro.usb.pid_suffix=1B8 \
-    ro.ril.telephony.mqanelements=5
+    ro.usb.pid_suffix=1B8
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/sony/yukon/platform.mk)
+$(call inherit-product, device/sony/yukon/platform_omni.mk)
 $(call inherit-product, vendor/sony/yukon-eagle/eagle-vendor.mk)

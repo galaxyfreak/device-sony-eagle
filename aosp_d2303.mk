@@ -13,6 +13,7 @@
 # limitations under the License.
 
 TARGET_KERNEL_CONFIG := aosp_yukon_eagle_defconfig
+TARGET_KERNEL_SOURCE := kernel/sony/msm8226
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/sony/eagle/device.mk)
