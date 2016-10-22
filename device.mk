@@ -48,7 +48,7 @@ PRODUCT_PACKAGES += \
 
 # NFC config
 PRODUCT_PACKAGES += \
-    nfc_nci.eagle
+    nfc_nci.pn54x.default
 
 # BoringSSL
 PRODUCT_PACKAGES += \
