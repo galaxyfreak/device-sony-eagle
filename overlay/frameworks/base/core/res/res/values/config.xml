@@ -80,9 +80,11 @@
          that can be set by the user. -->
     <integer name="config_screenBrightnessDim">10</integer>
      
-    <!-- Boolean indicating if restoring network selection should be skipped -->
-    <!-- The restoring is handled by modem if it is true-->
-    <bool translatable="false" name="skip_restoring_network_selection">true</bool>
+    <!-- The RadioAccessFamilies supported by the device.
+         Empty is viewed as "all".  Only used on devices which
+         don't support RIL_REQUEST_GET_RADIO_CAPABILITY
+         format is UMTS|LTE|... -->
+    <string translatable="false" name="config_radio_access_family">GSM | WCDMA</string>
 
     <!-- Minimum allowable screen brightness to use in a very dark room.
          This value sets the floor for the darkest possible auto-brightness
