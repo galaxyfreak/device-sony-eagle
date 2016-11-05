@@ -24,10 +24,23 @@ PRODUCT_COPY_FILES += \
     device/sony/eagle/releasetools/sensors.sh:install/bin/sensors.sh \
     device/sony/eagle/releasetools/variant.sh:install/bin/variant.sh
 
+# Radio stuff common to all variants
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.radio.no_wait_for_card=1 \
+    persist.radio.msgtunnel.start=false \
+    persist.radio.dfr_mode_set=1 \
+    persist.rild.nitz_long_ons_0= \
+    persist.rild.nitz_long_ons_1= \
+    persist.rild.nitz_long_ons_2= \
+    persist.rild.nitz_long_ons_3= \
+    persist.rild.nitz_short_ons_0= \
+    persist.rild.nitz_short_ons_1= \
+    persist.rild.nitz_short_ons_2= \
+    persist.rild.nitz_short_ons_3=
+
 # Product attributes
 PRODUCT_NAME := aosp_d2303
 PRODUCT_DEVICE := eagle
-PRODUCT_MODEL := Xperia M2
 PRODUCT_BRAND := Sony
 PRODUCT_MANUFACTURER := Sony
 
