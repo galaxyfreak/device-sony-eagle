@@ -22,6 +22,7 @@ echo ro.fxp.variant=${variant} >> /system/vendor/build.prop
 if [ "${variant}" = "D2403" ] || [ "${variant}" = "D2406" ]; then
     echo "ro.product.model=Xperia M2 Aqua" >> /system/vendor/build.prop
     echo "ro.telephony.ril.config=simactivation" >> /system/vendor/build.prop
+    echo "telephony.lteOnGSMDevice=1" >> /system/vendor/build.prop
     echo "ro.telephony.default_network=9" >> /system/vendor/build.prop
 fi
 if [ "${variant}" = "D2302" ]; then
@@ -38,6 +39,7 @@ fi
 if [ "${variant}" = "D2303" ] || [ "${variant}" = "D2306" ]; then
     echo "ro.product.model=Xperia M2" >> /system/vendor/build.prop
     echo "ro.telephony.ril.config=simactivation" >> /system/vendor/build.prop
+    echo "telephony.lteOnGSMDevice=1" >> /system/vendor/build.prop
     echo "ro.telephony.default_network=9" >> /system/vendor/build.prop
 fi
 
