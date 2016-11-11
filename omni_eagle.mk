@@ -34,4 +34,3 @@ PRODUCT_COPY_FILES += \
 
 # Override Product Name for OmniROM
 PRODUCT_NAME := omni_eagle
-PRODUCT_MODEL := Xperia M2
