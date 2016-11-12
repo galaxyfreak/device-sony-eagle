@@ -28,7 +28,7 @@ def FullOTA_InstallEnd(info):
   info.output_zip.write(os.path.join(UTILITIES_DIR, "sensors.sh"), "sensors.sh")
 
   info.script.AppendExtra(
-        ('package_extract_file("variant.sh, "/tmp/variant.sh");\n'
+        ('package_extract_file("variant.sh", "/tmp/variant.sh");\n'
          'set_metadata("/tmp/variant.sh", "uid", 0, "gid", 0, "mode", 0755);'))
   info.script.AppendExtra(
         ('package_extract_file("sensors.sh", "/tmp/sensors.sh");\n'
