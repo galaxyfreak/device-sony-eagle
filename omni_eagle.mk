@@ -25,12 +25,9 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_10x18.h\"
 $(call inherit-product, device/sony/eagle/aosp_d2303.mk)
 
 # Inherit Omni GSM telephony parts
-PRODUCT_PROPERTY_OVERRIDES += telephony.lteOnGSMDevice=1
 $(call inherit-product, vendor/omni/config/gsm.mk)
 
 # Recovery
 PRODUCT_COPY_FILES += \
     device/sony/eagle/rootdir/twrp.fstab:recovery/root/etc/twrp.fstab
 
-# Override Product Name for OmniROM
-PRODUCT_NAME := omni_eagle

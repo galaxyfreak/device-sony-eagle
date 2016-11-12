@@ -31,7 +31,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.dfr_mode_set=1 
 
 # Product attributes
-PRODUCT_NAME := aosp_d2303
 PRODUCT_DEVICE := eagle
 PRODUCT_BRAND := Sony
 PRODUCT_MANUFACTURER := Sony
