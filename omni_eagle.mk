@@ -28,6 +28,10 @@ $(call inherit-product, device/sony/eagle/aosp_d2303.mk)
 PRODUCT_PROPERTY_OVERRIDES += telephony.lteOnGSMDevice=1
 $(call inherit-product, vendor/omni/config/gsm.mk)
 
+# Exclude these from build.prop, they are set by libinit
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
+    ro.product.model
+
 # Recovery
 PRODUCT_COPY_FILES += \
     device/sony/eagle/rootdir/twrp.fstab:recovery/root/etc/twrp.fstab
