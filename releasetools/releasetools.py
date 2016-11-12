@@ -1,4 +1,5 @@
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2012 The Android Open Source Project
+# Copyright (C) 2016 The OmniROM Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,13 +14,25 @@
 # limitations under the License.
 #
 
-""" Custom OTA commands for eagle device """
+""" Custom OTA commands for Sony devices """
 
 import common
 import re
 import os
 
+TARGET_DIR = os.getenv('OUT')
+UTILITIES_DIR = os.path.join(TARGET_DIR, 'utilities')
+
 def FullOTA_InstallEnd(info):
-  info.script.AppendExtra('run_program("/tmp/install/bin/variant.sh");')
-  info.script.AppendExtra('run_program("/tmp/install/bin/sensors.sh");')
-  info.script.Unmount("/system")
+  info.output_zip.write(os.path.join(UTILITIES_DIR, "variant.sh"), "variant.sh")
+  info.output_zip.write(os.path.join(UTILITIES_DIR, "sensors.sh"), "sensors.sh")
+
+  info.script.AppendExtra(
+        ('package_extract_file("variant.sh, "/tmp/variant.sh");\n'
+         'set_metadata("/tmp/variant.sh", "uid", 0, "gid", 0, "mode", 0755);'))
+  info.script.AppendExtra(
+        ('package_extract_file("sensors.sh", "/tmp/sensors.sh");\n'
+         'set_metadata("/tmp/sensors.sh", "uid", 0, "gid", 0, "mode", 0755);'))
+  
+  info.script.AppendExtra('assert(run_program("/tmp/variant.sh") == 0);')
+  info.script.AppendExtra('assert(run_program("/tmp/sensors.sh") == 0);')
