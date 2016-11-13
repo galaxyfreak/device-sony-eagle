@@ -25,7 +25,6 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_10x18.h\"
 $(call inherit-product, device/sony/eagle/aosp_d2303.mk)
 
 # Inherit Omni GSM telephony parts
-PRODUCT_PROPERTY_OVERRIDES += telephony.lteOnGSMDevice=1
 $(call inherit-product, vendor/omni/config/gsm.mk)
 
 # Exclude these from build.prop, they are set by libinit
