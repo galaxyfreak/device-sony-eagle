@@ -27,7 +27,9 @@ if [ "${variant}" = "D2403" ] || [ "${variant}" = "D2406" ]; then
 elif [ "${variant}" = "D2302" ]; then
     echo "ro.product.model=Xperia M2 Dual" >> /system/vendor/build.prop
     echo "persist.radio.multisim.config=dsds" >> /system/vendor/build.prop
-    echo "ro.telephony.ril.config=simactivation,sim2gsmonly" >> /system/vendor/build.prop
+    echo "ro.telephony.ril.config=simactivation" >> /system/vendor/build.prop
+    echo "persist.radio.plmn_name_cmp=1" >> /system/vendor/build.prop
+    echo "persist.radio.dont_use_dsd=true" >> /system/vendor/build.prop
     echo "ro.telephony.default_network=0,1" >> /system/vendor/build.prop
 elif [ "${variant}" = "D2305" ]; then
     echo "ro.product.model=Xperia M2 3G" >> /system/vendor/build.prop
