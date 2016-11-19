@@ -150,15 +150,13 @@
 		</threshold>
 	</configuration> -->
 
-	<!-- USB, DC, charging, modem, backlight -->
+	<!-- USB, DC, backlight -->
 	<configuration sensor="temp-emmc">
 		<threshold>
 			<!--<mitigation name="dc" level="off" />-->
 			<mitigation name="usb" level="off" />
 			<mitigation name="charging" level="off" />
-			<mitigation name="modem" level="off" />
 			<mitigation name="backlight" level="off" />
-			<mitigation name="camera" level="off" />
 		</threshold>
 		<threshold trigger="59000" clear="58000">
 			<mitigation name="charging" level="5" />
@@ -188,15 +186,12 @@
 			<mitigation name="dc" level="4" />
 			<mitigation name="usb" level="4" />
 			<mitigation name="backlight" level="3" />
-			<mitigation name="camera" level="1" />
 		</threshold>
 		<threshold trigger="78000" clear="65000">
-			<mitigation name="camera" level="2" />
 			<mitigation name="charging" level="7" />
 			<!--<mitigation name="dc" level="5" />-->
 			<mitigation name="usb" level="5" />
 			<mitigation name="backlight" level="4" />
-			<mitigation name="modem" level="1" />
 		</threshold>
 		<threshold trigger="85000" clear="60000">
 			<mitigation name="shutdown" level="1" />
@@ -221,7 +216,7 @@
 		<threshold>
 			<mitigation name="gpu" level="off" />
 		</threshold>
-		<threshold trigger="600" clear="585">
+		<threshold trigger="60000" clear="58500">
 			<mitigation name="gpu" level="3" />
 		</threshold>
 	</configuration>
