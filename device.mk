@@ -15,6 +15,10 @@
 DEVICE_PACKAGE_OVERLAYS += \
     device/sony/eagle/overlay
 
+# Bootlogo
+PRODUCT_COPY_FILES += \
+     device/sony/eagle/rootdir/logo.rle:root/logo.rle
+
 # Device etc
 PRODUCT_COPY_FILES := \
     device/sony/eagle/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
@@ -39,17 +43,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.eagle
 
-# Camera SHIM packages
+# Camera shim packages
 PRODUCT_PACKAGES += \
     libshim_camera
 
 # wcnss
 PRODUCT_PACKAGES += \
    wcnss_service
-
-# NFC config
-PRODUCT_PACKAGES += \
-    nfc_nci.eagle
 
 # BoringSSL
 PRODUCT_PACKAGES += \
@@ -68,5 +68,5 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.usb.pid_suffix=1B8
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/sony/yukon/platform_omni.mk)
+$(call inherit-product, device/sony/yukon/platform.mk)
 $(call inherit-product, vendor/sony/yukon-eagle/eagle-vendor.mk)

@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import init.common.rc
-import init.common.usb.rc
+import init.yukon.rc
+import init.yukon.usb.rc
 import init.yukon.pwr.rc
 
 on init
@@ -21,7 +21,7 @@ on init
     export LD_SHIM_LIBS /system/lib/hw/camera.msm8226.so|libshim_camera.so:/system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
 
 on post-fs-data
-    #Camera
+    # Camera
     mkdir /data/misc/camera 0770 camera camera
 
     # Symlink for compability
@@ -81,7 +81,7 @@ on boot
     chown system system /sys/class/leds/torch-light/brightness
 
     # WCNSS enable
-    write /dev/wcnss_wlan 1
+    write /dev/wcnss_wlan ""
 
 # MEMSIC sensor daemon
 service memsicd /system/bin/memsicd

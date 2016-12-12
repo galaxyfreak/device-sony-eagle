@@ -177,13 +177,14 @@
 			<mitigation name="backlight" level="2" />
 		</threshold>
 		<threshold trigger="57000" clear="56500">
-		<mitigation name="charging" level="7" />
+			<mitigation name="charging" level="7" />
 			<!--<mitigation name="dc" level="4" />-->
 			<mitigation name="usb" level="4" />
 			<mitigation name="backlight" level="3" />
+		</threshold>
 		<threshold trigger="57500" clear="57000">
 			<mitigation name="charging" level="7" />
-			<mitigation name="dc" level="4" />
+			<!--<mitigation name="dc" level="4" />-->
 			<mitigation name="usb" level="4" />
 			<mitigation name="backlight" level="3" />
 		</threshold>

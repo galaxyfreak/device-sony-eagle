@@ -13,27 +13,22 @@
 # limitations under the License.
 
 # Bootanimation
-TARGET_BOOTANIMATION_SIZE := 720x407
+TARGET_SCREEN_HEIGHT := 960
+TARGET_SCREEN_WIDTH := 540
+DEVICE_RESOLUTION := 540x960
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := D2303,D2403,eagle
-
-# TWRP Recovery
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_10x18.h\"
 
 # Inherit AOSP Yukon common device parts
 $(call inherit-product, device/sony/eagle/aosp_d2303.mk)
 
 # Inherit Omni GSM telephony parts
-$(call inherit-product, vendor/omni/config/gsm.mk)
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Exclude these from build.prop, they are set by libinit
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
     ro.product.model
 
-# Recovery
-PRODUCT_COPY_FILES += \
-    device/sony/eagle/rootdir/twrp.fstab:recovery/root/etc/twrp.fstab
-
-# Override Product Name for OmniROM
-PRODUCT_NAME := omni_eagle
+# Override Product Name for CM
+PRODUCT_NAME := cm_eagle
