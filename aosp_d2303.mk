@@ -21,8 +21,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 PRODUCT_COPY_FILES += \
-    device/sony/eagle/releasetools/sensors.sh:utilities/sensors.sh \
-    device/sony/eagle/releasetools/variant.sh:utilities/variant.sh
+    device/sony/eagle/releasetools/variant.sh:install/bin/variant.sh
 
 # Radio stuff common to all variants
 PRODUCT_PROPERTY_OVERRIDES += \

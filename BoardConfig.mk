@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include device/sony/yukon/PlatformConfigOmni.mk
+include device/sony/yukon/PlatformConfig.mk
 
 TARGET_SPECIFIC_HEADER_PATH += device/sony/eagle/include
 
