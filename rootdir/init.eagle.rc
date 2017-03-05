@@ -19,16 +19,21 @@ import init.yukon.pwr.rc
 on init
     symlink /dev/block/platform/msm_sdcc.1 /dev/block/bootdevice
 
+    # Symbols required for camera blobs
+    export LD_SHIM_LIBS /system/lib/hw/camera.msm8226.so|libshim_camera.so:/system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
+
 on post-fs-data
     # Symlink for compability
     symlink /dev/pn54x /dev/pn547
 
 on fs
     mount_all ./fstab.eagle
+    swapon_all /fstab.eagle
     write /sys/kernel/boot_adsp/boot 1
 
 on boot
     # Sensor permissions
+    # Geomagnetic YAS533 iio
     chown system system /dev/iio:device0
     chown system system /sys/bus/iio/devices/iio:device0/hard_offset
     chown system system /sys/bus/iio/devices/iio:device0/sampling_frequency
@@ -43,6 +48,7 @@ on boot
     chown system input /sys/bus/iio/devices/iio:device1/in_accel_x_calibbias
     chown system input /sys/bus/iio/devices/iio:device1/in_accel_y_calibbias
     chown system input /sys/bus/iio/devices/iio:device1/in_accel_z_calibbias
+    #chmod 666 /sys/bus/iio/devices/iio:device0/ping
     write /sys/bus/iio/devices/iio:device0/position 1
     write /sys/bus/iio/devices/iio:device1/position 0
     chmod 666 /data/system/yas.cfg
@@ -53,9 +59,20 @@ on boot
     chown system system /sys/class/input/input0/driver/delay
     chown system system /sys/class/input/input1/driver/cali
 
+    mkdir /data/misc/sensors 0777 system system
+    chmod 666 /dev/mmc3416x
+    chmod 666 /dev/ecompass_ctrl
+    chmod 777 /system/bin/memsicd
+    chmod 666 /sys/class/magnetic/magnetic/aflag
+    chmod 666 /sys/class/magnetic/magnetic/mflag
+    chmod 666 /sys/class/magnetic/magnetic/oflag
+    chmod 666 /sys/class/magnetic/magnetic/grvflag
+    chmod 666 /sys/class/magnetic/magnetic/delay
+
     # Enable writing to led blink node from userspace
-    chown system system /sys/class/leds/red/blink
-    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/led:rgb_red/blink
+    chown system system /sys/class/leds/led:rgb_green/blink
+    chown system system /sys/class/leds/led:rgb_blue/blink
 
     # Enable writing to brightness node under torch-light from userspace
     chown system system /sys/class/leds/torch-light/brightness
@@ -63,8 +80,13 @@ on boot
     # WCNSS enable
     write /dev/wcnss_wlan 1
 
+# MEMSIC sensor daemon
+service memsicd /system/bin/memsicd
+    class main
+    oneshot
+
 # WCNSS service
-service wcnss_service /system/vendor/bin/wcnss_service
+service wcnss_service /system/bin/wcnss_service
     class late_start
     user system
     group system wifi

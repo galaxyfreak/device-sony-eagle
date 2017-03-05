@@ -1,4 +1,4 @@
-# Copyright 2014 The Android Open Source Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,16 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include device/sony/yukon/PlatformConfig.mk
+LOCAL_PATH := $(call my-dir)
 
-TARGET_SPECIFIC_HEADER_PATH += device/sony/eagle/include
+include $(CLEAR_VARS)
 
-TARGET_RECOVERY_FSTAB = device/sony/eagle/rootdir/fstab.eagle
+LOCAL_SRC_FILES := \
+    gui/SensorManager.cpp
 
-TARGET_BOOTLOADER_BOARD_NAME := D2303
+LOCAL_SHARED_LIBRARIES := libutils libgui liblog libbinder
+LOCAL_MODULE := libshim_camera
+LOCAL_MODULE_TAGS := optional
 
-BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1962934272
-#Reserve space for data encryption (5461000192-16384)
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 5460983808
-
-BOARD_KERNEL_CMDLINE += androidboot.hardware=eagle
+include $(BUILD_SHARED_LIBRARY)
