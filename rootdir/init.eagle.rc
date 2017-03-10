@@ -25,6 +25,7 @@ on post-fs-data
 
 on fs
     mount_all ./fstab.eagle
+    swapon_all /fstab.eagle
     write /sys/kernel/boot_adsp/boot 1
 
 on boot
