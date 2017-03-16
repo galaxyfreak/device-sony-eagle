@@ -48,7 +48,6 @@ on boot
     chown system input /sys/bus/iio/devices/iio:device1/in_accel_x_calibbias
     chown system input /sys/bus/iio/devices/iio:device1/in_accel_y_calibbias
     chown system input /sys/bus/iio/devices/iio:device1/in_accel_z_calibbias
-    #chmod 666 /sys/bus/iio/devices/iio:device0/ping
     write /sys/bus/iio/devices/iio:device0/position 1
     write /sys/bus/iio/devices/iio:device1/position 0
     chmod 666 /data/system/yas.cfg
