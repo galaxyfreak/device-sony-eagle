@@ -76,9 +76,6 @@ on boot
     # Enable writing to brightness node under torch-light from userspace
     chown system system /sys/class/leds/torch-light/brightness
 
-    # WCNSS enable
-    write /dev/wcnss_wlan 1
-
 # MEMSIC sensor daemon
 service memsicd /system/bin/memsicd
     class main
