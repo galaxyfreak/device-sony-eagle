@@ -61,9 +61,6 @@ on boot
     # Enable writing to brightness node under torch-light from userspace
     chown system system /sys/class/leds/torch-light/brightness
 
-    # WCNSS enable
-    write /dev/wcnss_wlan 1
-
 # WCNSS service
 service wcnss_service /system/vendor/bin/wcnss_service
     class late_start
