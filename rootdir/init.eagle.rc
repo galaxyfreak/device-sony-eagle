@@ -62,7 +62,7 @@ on boot
     chown system system /sys/class/leds/torch-light/brightness
 
 # WCNSS service
-service wcnss_service /system/vendor/bin/wcnss_service
+service wcnss_service /system/bin/wcnss_service
     class late_start
     user system
     group system wifi
