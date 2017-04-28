@@ -118,7 +118,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     oneshot
 
 # MAC setup
-service btnvtool /system/vendor/bin/btnvtool -I
+service btnvtool /system/vendor/bin/btnvtool -O
     user root
     group root
     oneshot
