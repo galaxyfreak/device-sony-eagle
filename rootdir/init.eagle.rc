@@ -81,6 +81,11 @@ service memsicd /system/bin/memsicd
     class main
     oneshot
 
+# Get wifi mac address from TA
+service wifi_mac_bootup /system/bin/sh /system/etc/wifi/init.cci.wifi.mac.bootup.sh
+    class main
+    oneshot
+
 # WCNSS service
 service wcnss_service /system/bin/wcnss_service
     class late_start
