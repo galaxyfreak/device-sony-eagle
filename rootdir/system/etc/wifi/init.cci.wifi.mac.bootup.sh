@@ -26,15 +26,17 @@ logi ()
 
 rm /data/misc/wifi/WCNSS_qcom_cfg.ini
 
-#cfg_size=`ls -s /data/misc/wifi/WCNSS_qcom_cfg.ini`
+cfg_size=`ls -s /data/misc/wifi/WCNSS_qcom_cfg.ini`
 
 if [ ! -e /data/misc/wifi/WCNSS_qcom_cfg.ini ] || [[ $cfg_size == 0* ]]; then
     cp /system/etc/wifi/WCNSS_qcom_cfg.ini \
 	/data/misc/wifi/WCNSS_qcom_cfg.ini
     chown system:wifi /data/misc/wifi/WCNSS_qcom_cfg.ini
     chmod 660 /data/misc/wifi/WCNSS_qcom_cfg.ini
+    mount -o remount,rw /system
     rm /system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini
     ln -s /data/misc/wifi/WCNSS_qcom_cfg.ini /system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini
+    umount /system
     loge "config file checking, file non exist or size zero, re-copy config file"
 fi
 
