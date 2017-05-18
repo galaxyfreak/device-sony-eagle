@@ -32,6 +32,27 @@ on fs
     write /sys/kernel/boot_adsp/boot 1
 
 on boot
+    # Illumination bar
+    chown system system /sys/class/illumination/0
+    chown system system /sys/class/illumination/1
+    chown system system /sys/class/illumination/2
+    chown system system /sys/class/illumination/3
+    chown system system /sys/class/illumination/4
+    chown system system /sys/class/illumination/5
+    chown system system /sys/class/illumination/6
+    chown system system /sys/class/illumination/7
+    chown system system /sys/class/illumination/8
+    
+    chmod 0664 /sys/class/illumination/0
+    chmod 0664 /sys/class/illumination/1
+    chmod 0664 /sys/class/illumination/2
+    chmod 0664 /sys/class/illumination/3
+    chmod 0664 /sys/class/illumination/4
+    chmod 0664 /sys/class/illumination/5
+    chmod 0664 /sys/class/illumination/6
+    chmod 0664 /sys/class/illumination/7
+    chmod 0664 /sys/class/illumination/8
+
     # Sensor permissions
     # Geomagnetic YAS533 iio
     chown system system /dev/iio:device0
