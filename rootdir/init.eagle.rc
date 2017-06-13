@@ -36,6 +36,9 @@ on fs
     restorecon_recursive /persist
 
 on boot
+    # WiFi MAC
+    chown system system /sys/devices/fb000000.qcom,wcnss-wlan/wcnss_mac_addr
+
     # Illumination bar
     chown system system /sys/class/illumination/0
     chown system system /sys/class/illumination/1
