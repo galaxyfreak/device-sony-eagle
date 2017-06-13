@@ -21,7 +21,7 @@ PRODUCT_COPY_FILES := \
     device/sony/eagle/rootdir/system/etc/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf \
     device/sony/eagle/rootdir/system/etc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
     device/sony/eagle/rootdir/system/etc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
-
+    device/sony/eagle/rootdir/system/etc/wifimactool.sh:system/etc/wifimactool.sh
 # Device Specific Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
