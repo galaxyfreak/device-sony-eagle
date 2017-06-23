@@ -112,6 +112,8 @@ service memsicd /system/bin/memsicd
 # WiFi MAC
 service wifimactool /system/bin/sh /system/etc/wifimactool.sh
     class main    
+    user system
+    group system bluetooth
     oneshot
 
 # WCNSS service
