@@ -112,6 +112,7 @@ service memsicd /system/bin/memsicd
 # WiFi MAC
 service wifimactool /system/bin/sh /system/etc/wifimactool.sh
     class main    
+    disabled
     oneshot
 
 # WCNSS service
@@ -163,6 +164,10 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     group bluetooth system
     disabled
     oneshot
+
+on property:vold.post_fs_data_done=1
+    # Read WiFi MAC address only when /data is ready
+    start wifimactool
 
 on property:bluetooth.hciattach=true
     start hciattach
