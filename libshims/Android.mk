@@ -17,7 +17,8 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
-    gui/SensorManager.cpp
+    gui/SensorManager.cpp \
+    CameraParameters.cpp
 
 LOCAL_SHARED_LIBRARIES := libutils libgui liblog libbinder
 LOCAL_MODULE := libshim_camera
