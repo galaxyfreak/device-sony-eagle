@@ -20,7 +20,7 @@ LOCAL_SRC_FILES := \
     gui/SensorManager.cpp \
     CameraParameters.cpp
 
-LOCAL_SHARED_LIBRARIES := libutils libgui liblog libbinder
+LOCAL_SHARED_LIBRARIES := libutils libgui liblog libbinder libsensor
 LOCAL_MODULE := libshim_camera
 LOCAL_MODULE_TAGS := optional
 

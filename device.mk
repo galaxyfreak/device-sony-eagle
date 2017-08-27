@@ -47,8 +47,8 @@ PRODUCT_PACKAGES += \
     libshim_camera
 
 # BoringSSL
-PRODUCT_PACKAGES += \
-    libboringssl-compat
+#PRODUCT_PACKAGES += \
+#    libboringssl-compat
 
 PRODUCT_AAPT_CONFIG := large
 PRODUCT_AAPT_PREBUILT_DPI := hdpi
