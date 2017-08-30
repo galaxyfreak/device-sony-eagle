@@ -20,7 +20,7 @@ on init
     symlink /dev/block/platform/msm_sdcc.1 /dev/block/bootdevice
 
     # Symbols required for camera blobs
-    export LD_SHIM_LIBS /system/lib/hw/camera.msm8226.so|libshim_camera.so:/system/lib/libcamera_client.so|libshim_camera.so
+    # export LD_SHIM_LIBS /system/lib/hw/camera.msm8226.so|libshim_camera.so:/system/lib/libcamera_client.so|libshim_camera.so
 
 on post-fs-data
     # Symlink for compability
