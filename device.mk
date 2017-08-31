@@ -42,6 +42,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.eagle
 
+# NFC
+PRODUCT_PACKAGES += \
+    nfc_nci.eagle
+
 # Camera shim packages
 PRODUCT_PACKAGES += \
     libshim_camera
