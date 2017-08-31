@@ -255,17 +255,6 @@ int sensors_poll_context_t::get_device_version_by_handle(int handle) {
     }
 }
 
-// Android N and hire require sensor HALs to be at least 1_3 compliant
-// but we don't care so we allow version 1_1
-#define HAL_VERSION_IS_COMPLIANT(version)  \
-    (version >= SENSORS_DEVICE_API_VERSION_1_1)
-
-// Returns true if HAL is compliant, false if HAL is not compliant or if handle is invalid
-static bool halIsCompliant(sensors_poll_context_t *ctx, int handle) {
-    int version = ctx->get_device_version_by_handle(handle);
-    return version != -1 && HAL_VERSION_IS_COMPLIANT(version);
-}
-
 static bool halIsAPILevelCompliant(sensors_poll_context_t *ctx, int handle, int level) {
     int version = ctx->get_device_version_by_handle(handle);
     return version != -1 && (version >= level);
@@ -293,7 +282,7 @@ int sensors_poll_context_t::activate(int handle, int enabled) {
     ALOGV("activate");
     int local_handle = get_local_handle(handle);
     sensors_poll_device_t* v0 = this->get_v0_device_by_handle(handle);
-    if (halIsCompliant(this, handle) && local_handle >= 0 && v0) {
+    if (local_handle >= 0 && v0) {
         retval = v0->activate(v0, local_handle, enabled);
     } else {
         ALOGE("IGNORING activate(enable %d) call to non-API-compliant sensor handle=%d !",
@@ -308,7 +297,7 @@ int sensors_poll_context_t::setDelay(int handle, int64_t ns) {
     ALOGV("setDelay");
     int local_handle = get_local_handle(handle);
     sensors_poll_device_t* v0 = this->get_v0_device_by_handle(handle);
-    if (halIsCompliant(this, handle) && local_handle >= 0 && v0) {
+    if (local_handle >= 0 && v0) {
         retval = v0->setDelay(v0, local_handle, ns);
     } else {
         ALOGE("IGNORING setDelay() call for non-API-compliant sensor handle=%d !", handle);
@@ -386,8 +375,12 @@ int sensors_poll_context_t::batch(int handle, int flags, int64_t period_ns, int6
     int retval = -EINVAL;
     int local_handle = get_local_handle(handle);
     sensors_poll_device_1_t* v1 = this->get_v1_device_by_handle(handle);
-    if (halIsCompliant(this, handle) && local_handle >= 0 && v1) {
-        retval = v1->batch(v1, local_handle, flags, period_ns, timeout);
+    if (local_handle >= 0 && v1) {
+        if (halIsAPILevelCompliant(this, handle, SENSORS_DEVICE_API_VERSION_1_1)) {
+            retval = v1->batch((sensors_poll_device_t*) v1, local_handle, flags, period_ns, timeout);
+        } else {
+            retval = v1->setDelay((sensors_poll_device_t*) v1, handle, period_ns);
+        }
     } else {
         ALOGE("IGNORING batch() call to non-API-compliant sensor handle=%d !", handle);
     }
@@ -400,8 +393,12 @@ int sensors_poll_context_t::flush(int handle) {
     int retval = -EINVAL;
     int local_handle = get_local_handle(handle);
     sensors_poll_device_1_t* v1 = this->get_v1_device_by_handle(handle);
-    if (halIsCompliant(this, handle) && local_handle >= 0 && v1) {
-        retval = v1->flush(v1, local_handle);
+    if (local_handle >= 0 && v1) {
+        if (halIsAPILevelCompliant(this, handle, SENSORS_DEVICE_API_VERSION_1_1)) {
+            retval = v1->flush((sensors_poll_device_t*) v1, local_handle);
+        } else {
+            retval = -EINVAL;
+        }
     } else {
         ALOGE("IGNORING flush() call to non-API-compliant sensor handle=%d !", handle);
     }
@@ -708,12 +705,8 @@ static int open_sensors(const struct hw_module_t* hw_module, const char* name,
         struct hw_device_t* sub_hw_device;
         int sub_open_result = sensors_module->common.methods->open(*it, name, &sub_hw_device);
         if (!sub_open_result) {
-            if (!HAL_VERSION_IS_COMPLIANT(sub_hw_device->version)) {
-                ALOGE("SENSORS_DEVICE_API_VERSION_1_3 or newer is required for all sensor HALs");
-                ALOGE("This HAL reports non-compliant API level : %s",
-                        apiNumToStr(sub_hw_device->version));
-                ALOGE("Sensors belonging to this HAL will get ignored !");
-            }
+            ALOGV("This HAL reports API level : %s",
+                    apiNumToStr(sub_hw_device->version
             dev->addSubHwDevice(sub_hw_device);
         }
     }
@@ -723,3 +716,4 @@ static int open_sensors(const struct hw_module_t* hw_module, const char* name,
     ALOGV("...open_sensors end");
     return 0;
 }
+
