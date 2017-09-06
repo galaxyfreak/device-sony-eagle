@@ -112,7 +112,7 @@ service memsicd /system/bin/memsicd
 
 # WiFi MAC
 service wifimactool /system/bin/sh /system/etc/wifimactool.sh
-    class main    
+    class core
     oneshot
 
 # WCNSS service
