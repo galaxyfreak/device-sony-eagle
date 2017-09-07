@@ -21,7 +21,7 @@ on init
 
     # Symbols required for camera blobs
     export LD_PRELOAD /system/lib/libatomic_camera.so
-    export LD_SHIM_LIBS /system/lib/hw/camera.msm8226.so|libshim_camera.so:/system/lib/libcamera_client.so|libshim_camera.so
+    export LD_SHIM_LIBS /system/lib/hw/camera.msm8226.so|libshim_camera.so:/system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so:/system/lib/libcamera_client.so|libshim_camera.so
 
 on post-fs-data
     # Symlink for compability
