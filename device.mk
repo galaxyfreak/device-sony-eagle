@@ -27,6 +27,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
+# SnapCam
+PRODUCT_COPY_FILES += \
+    device/sony/eagle/rootdir/system/app/SnapdragonCamera/SnapdragonCamera.apk:system/app/SnapdragonCamera/SnapdragonCamera.apk \
+    device/sony/eagle/rootdir/system/lib/libjni_snapcammosaic.so:system/lib/libjni_snapcammosaic.so \
+    device/sony/eagle/rootdir/system/lib/libjni_snapcamtinyplanet.so:system/lib/libjni_snapcamtinyplanet.so
+
+
 # Device Init
 PRODUCT_PACKAGES += \
     fstab.eagle \
