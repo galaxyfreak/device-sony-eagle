@@ -17,7 +17,7 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 # Device etc
 PRODUCT_COPY_FILES := \
-    device/sony/eagle/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
+    device/sony/eagle/rootdir/system/vendor/etc/mixer_paths.xml:system/vendor/etc/mixer_paths.xml \
     device/sony/eagle/rootdir/system/etc/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf \
     device/sony/eagle/rootdir/system/etc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
     device/sony/eagle/rootdir/system/etc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
