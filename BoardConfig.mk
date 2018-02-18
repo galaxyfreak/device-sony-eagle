@@ -23,3 +23,5 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1962934272
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5460983808
 
 BOARD_KERNEL_CMDLINE += androidboot.hardware=eagle
+
+TARGET_LD_SHIM_LIBS := /system/lib/hw/camera.msm8226.so|libshim_camera.so:/system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so:/system/lib/libcamera_client.so|libshim_camera.so
