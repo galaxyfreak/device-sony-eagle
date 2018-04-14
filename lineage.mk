@@ -15,8 +15,9 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Fingerprint for eagle (from stock)
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME=D2303 \
-    BUILD_FINGERPRINT=Sony/D2303/D2303:5.1.1/18.6.A.0.182/1807889774:user/release-keys \
     PRIVATE_BUILD_DESC="D2303-user 5.1.1 18.6.A.0.182 1807889774 release-keys"
+
+BUILD_FINGERPRINT := Sony/D2303/D2303:5.1.1/18.6.A.0.182/1807889774:user/release-keys
 
 PRODUCT_GMS_CLIENTID_BASE := android-sonyericsson
 
